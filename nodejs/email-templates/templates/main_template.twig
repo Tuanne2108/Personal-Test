@@ -1,0 +1,67 @@
+{% extends '../layout/_base.twig' %}
+
+{% set colors = {
+all: '#535672',
+ssdTotal: '#A0A0A0',
+cola: '#ff0000',
+otherSSD: '#996699',
+coffee: '#C19161',
+juice: '#F5F518',
+nsTea: '#72ABAB',
+blackTea: '#6E5C6C',
+sports: '#00cccc',
+energy: '#FF7912',
+water: '#66b2ff',
+others: '#e0e0e0'
+} %}
+
+{% set commonStyles = {
+container:
+'font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px;',
+title: 'color: black; margin-top: 30px;',
+subscription: 'color: grey; margin-top: 15px; text-align: center;',
+table:
+'width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px;',
+cell: 'border: 1px solid #dee2e6; padding: 8px; text-align: center;',
+headerCell:
+'border: 1px solid #dee2e6; padding: 8px; text-align: center; font-weight: bold;',
+categoryCell:'border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: blue;',
+logo: 'width: 50px; height: auto;',
+valueNegative: 'color: #ff0000;',
+valuePositive: 'color: #000000; font-weight: bold;'
+} %}
+
+{% set headerStyles = {
+all: 'background-color: ' ~ colors.all ~ '; color: white;',
+ssdTotal: 'background-color: ' ~ colors.ssdTotal ~ '; color: white;',
+cola: 'background-color: ' ~ colors.cola ~ '; color: white;',
+otherSSD: 'background-color:' ~ colors.otherSSD ~ '; color: white;',
+coffee: 'background-color: ' ~ colors.coffee ~ '; color: white;',
+juice: 'background-color: ' ~ colors.juice ~ '; color: white;',
+nsTea: 'background-color: ' ~ colors.nsTea ~ '; color: white;',
+blackTea: 'background-color: ' ~ colors.blackTea ~ '; color: white;',
+sports: 'background-color: ' ~ colors.sports ~ '; color: white;',
+energy: 'background-color: ' ~ colors.energy ~ '; color: white;',
+water: 'background-color: ' ~ colors.water ~ '; color: white;',
+others: 'background-color: ' ~ colors.others ~ '; color: white;'
+} %}
+
+{% set responsiveStyles = {
+container: '@media screen and (max-width: 768px) { padding: 10px; }',
+table: '@media screen and (max-width: 768px) { font-size: 12px; }',
+cell: '@media screen and (max-width: 768px) { padding: 4px; }'
+} %}
+
+{% block content %}
+<div style="{{ commonStyles.container }}">
+    {% include '../components/table1.twig' %}
+    {% include '../components/table2.twig' %}
+    {% include '../components/table3.twig' %}
+</div>
+
+<style>
+    {{ responsiveStyles.container|raw }}
+    {{ responsiveStyles.table|raw }}
+    {{ responsiveStyles.cell|raw }}
+</style>
+{% endblock %}

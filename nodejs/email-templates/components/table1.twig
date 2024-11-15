@@ -1,0 +1,63 @@
+    <h1 style="{{ commonStyles.title }}">{{ title|raw }}</h1>
+    <table style="{{ commonStyles.table }}">
+        <tr>
+            <th colspan="2" style="{{ commonStyles.headerCell }}">(Sample:{{
+                sample }})</th>
+            {% for header in headers %}
+            {% set key = attribute(headerToKeyMap, header) %}
+            <th
+                style="{{ commonStyles.headerCell }} {{ headerStyles[key]|default('')|raw }}">
+                {{ header }}
+            </th>
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td rowspan="2" style="{{ commonStyles.cell }}">Ttl # of Face</td>
+            <td style="{{ commonStyles.cell }}">Imp vs.LY</td>
+            {% for header in headers %}
+            {% set key = attribute(headerToKeyMap, header) %}
+            <td style="{{ commonStyles.cell }}">
+                {{ attribute(metrics.importance.imp, key) }}
+            </td>
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td style="{{ commonStyles.cell }}">Importance</td>
+            {% for header in headers %}
+            {% set key = attribute(headerToKeyMap, header) %}
+            <td style="{{ commonStyles.cell }}">
+                {{ attribute(metrics.importance.importance, key) }}
+            </td>
+            {% endfor %}
+        </tr>
+
+        {% for company in companies %}
+        <tr>
+            <td rowspan="2" style="{{ commonStyles.cell }}">
+                <img style="{{ commonStyles.logo }}" src="{{ company.logo }}"
+                    alt="{{ company.name }}" />
+            </td>
+            <td style="{{ commonStyles.cell }}">Share (pts)</td>
+            {% for header in headers %}
+            {% set key = attribute(headerToKeyMap, header) %}
+            <td style="{{ commonStyles.cell }}">
+                {{ attribute(company.data.share, key) }}
+            </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td style="{{ commonStyles.cell }}">vs.LY</td>
+            {% for header in headers %}
+            {% set key = attribute(headerToKeyMap, header) %}
+            <td style="{{ commonStyles.cell }}">
+                {{ attribute(company.data.vsLy, key) }}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <h3 style="{{commonStyles.subscription}}">
+        {{subscription|raw}}
+    </h3>

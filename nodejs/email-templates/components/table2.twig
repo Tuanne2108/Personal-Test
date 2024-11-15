@@ -1,0 +1,50 @@
+<h1 style="{{ commonStyles.title }}">{{ sampleData2.title|raw }}</h1>
+
+<table style="{{ commonStyles.table }}">
+    <!-- Render the Header Row -->
+    <tr>
+        <td colspan="3" style="{{ commonStyles.cell }}"></td>
+        <td colspan="5" style="background-color: #535672; color: white; text-align: center; font-weight: bold;">
+            All Category
+        </td>
+    </tr>
+<tr>
+        {% for header in sampleData2.headers %}
+            <th style="{{ commonStyles.headerCell }}">
+                {% if header.logo %}
+                    <img src="{{ header.logo }}" alt="{{ header.name }}" style="{{ commonStyles.logo }}">
+                {% else %}
+                    {{ header.name }}
+                {% endif %}
+            </th>
+        {% endfor %}
+    </tr>
+
+    <!-- Render each Category Section -->
+    {% for category in sampleData2.categories %}
+        <!-- Category Name Row -->
+        <tr>
+            <td style="{{ commonStyles.categoryCell }}" colspan="2">{{ category.categoryName }}</td>
+            {% for data in category.dataRow %}
+                <td style="{{ commonStyles.cell }}">{{ data }}</td>
+            {% endfor %}
+        </tr>
+
+        <!-- Rows within the Category -->
+        {% for row in category.rows %}
+            <tr>
+                <td style="{{ commonStyles.cell }}">{{ row.account }}</td>
+                <td style="{{ commonStyles.cell }}">{{ row.segment }}</td>
+                <td style="{{ commonStyles.cell }}">{{ row.vsLY }}</td>
+
+                {% for companyData in row.companies %}
+                    <td style="{{ commonStyles.cell }}">{{ companyData }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    {% endfor %}
+</table>
+
+<h3 style="{{commonStyles.subscription}}">
+        {{sampleData2.subscription|raw}}
+</h3>
